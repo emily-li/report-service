@@ -1,11 +1,15 @@
 package com.liemily.reportgeneration;
 
 import com.liemily.reportgeneration.reports.Report;
-import com.liemily.reportgeneration.reports.StockReport;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+
+import java.lang.invoke.MethodHandles;
 
 /**
  * Created by Emily Li on 14/08/2017.
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Lazy
 public class ReportInitialiser {
+    private static final Logger logger = LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private ApplicationContext applicationContext;
 
     @Autowired
@@ -21,6 +26,11 @@ public class ReportInitialiser {
     }
 
     Report getReport(String report) {
-        return new StockReport();
+        try {
+            return (Report) applicationContext.getBean(report);
+        } catch (ClassCastException | NoSuchBeanDefinitionException e) {
+            logger.error("No such report with report name " + report);
+            return null;
+        }
     }
 }
