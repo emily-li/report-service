@@ -8,7 +8,7 @@ public enum REPORT_NAME {
 
     @Override
     public String toString() {
-        String[] splitName = super.toString().split("_");
+        String[] splitName = super.toString().toLowerCase().split("_");
         StringBuilder name = new StringBuilder(splitName[0]);
         for (int i = 1; i < splitName.length; i++) {
             String firstLetter = Character.toString(splitName[i].charAt(0));
