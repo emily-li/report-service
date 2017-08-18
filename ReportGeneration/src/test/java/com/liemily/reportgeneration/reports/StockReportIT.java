@@ -27,7 +27,7 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class StockReportTest {
+public class StockReportIT {
     @Autowired
     private StockReport stockReport;
 
