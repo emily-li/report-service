@@ -1,4 +1,4 @@
-package com.liemily.reportgeneration;
+package com.liemily.reportgeneration.reports;
 
 import org.junit.Test;
 
