@@ -12,6 +12,12 @@ public class ReportRequest {
     private final FILE_TYPE fileType;
     private final Sort.Direction sortDirection;
 
+    public ReportRequest(REPORT_NAME reportName, FILE_TYPE fileType) {
+        this.reportName = reportName;
+        this.fileType = fileType;
+        this.sortDirection = Sort.DEFAULT_DIRECTION;
+    }
+
     public ReportRequest(REPORT_NAME reportName, FILE_TYPE fileType, Sort.Direction sortDirection) {
         this.reportName = reportName;
         this.fileType = fileType;
