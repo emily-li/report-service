@@ -6,8 +6,11 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
 
 /**
  * Created by Emily Li on 23/07/2017.
@@ -47,5 +50,10 @@ public class StockService {
     @Transactional(readOnly = true)
     public Stock getStock(String stockSymbol) {
         return stockRepository.findOne(stockSymbol);
+    }
+
+    @Transactional(readOnly = true)
+    public Collection<Stock> getStocks(Sort sort) {
+        return stockRepository.findAll(sort);
     }
 }
