@@ -1,5 +1,6 @@
 package com.liemily.reportgeneration;
 
+import com.liemily.reportgeneration.reports.REPORT_NAME;
 import com.liemily.reportgeneration.reports.Report;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -25,11 +26,11 @@ public class ReportInitialiser {
         this.applicationContext = applicationContext;
     }
 
-    Report getReport(String report) {
+    Report getReport(REPORT_NAME reportName) {
         try {
-            return (Report) applicationContext.getBean(report);
+            return (Report) applicationContext.getBean(reportName.toString());
         } catch (ClassCastException | NoSuchBeanDefinitionException e) {
-            logger.error("No such report with report name " + report);
+            logger.error("No such report with report name " + reportName);
             return null;
         }
     }
