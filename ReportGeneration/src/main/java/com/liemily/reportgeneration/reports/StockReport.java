@@ -1,6 +1,7 @@
 package com.liemily.reportgeneration.reports;
 
 import com.liemily.reportgeneration.ReportRequest;
+import com.liemily.reportgeneration.ReportWriter;
 import com.liemily.reportgeneration.reports.domain.ReportItem;
 import com.liemily.reportgeneration.reports.domain.ReportItems;
 import com.liemily.stock.Stock;
@@ -23,7 +24,8 @@ public class StockReport extends Report {
     private StockService stockService;
 
     @Autowired
-    public StockReport(StockService stockService) {
+    public StockReport(ReportWriter reportWriter, StockService stockService) {
+        super(reportWriter);
         this.stockService = stockService;
     }
 
